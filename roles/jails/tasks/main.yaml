@@ -1,0 +1,21 @@
+---
+
+- name: Create Poudriere jails
+  command: poudriere jail -c -q -a {{ item.architecture }} -v {{ item.version }} -j {{ item.name }}{{ item.architecture }}
+  with_items:
+  - { architecture: 'amd64', version: '13.1-RELEASE', name: '131' }
+  - { architecture: 'i386', version: '13.1-RELEASE', name: '131' }
+  - { architecture: 'amd64', version: '12.4-RELEASE', name: '124' }
+  - { architecture: 'i386', version: '12.4-RELEASE', name: '124' }
+  - { architecture: 'amd64', version: '12.3-RELEASE', name: '123' }
+  - { architecture: 'i386', version: '12.3-RELEASE', name: '123' }
+
+- name: Update Poudriere jails
+  command: poudriere jail -u -q -j {{ item.name }}{{ item.architecture }}
+  with_items:
+  - { architecture: 'amd64', version: '13.1-RELEASE', name: '131' }
+  - { architecture: 'i386', version: '13.1-RELEASE', name: '130' }
+  - { architecture: 'amd64', version: '12.4-RELEASE', name: '124' }
+  - { architecture: 'i386', version: '12.4-RELEASE', name: '124' }
+  - { architecture: 'amd64', version: '12.3-RELEASE', name: '123' }
+  - { architecture: 'i386', version: '12.3-RELEASE', name: '123' }
