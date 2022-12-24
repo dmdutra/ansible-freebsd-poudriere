@@ -1,0 +1,14 @@
+---
+- name: Download ports tree
+  command: portsnap fetch
+
+- name: Extract ports tree
+  command: portsnap extract
+
+- name: Create Poudriere ports tree
+  command: poudriere ports -c -m git+https -p HEAD
+  ignore_errors: yes
+
+- name: Update Poudriere ports tree
+  command: poudriere ports -u -m git+https -p HEAD
+  ignore_errors: yes
