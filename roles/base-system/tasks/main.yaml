@@ -1,0 +1,12 @@
+---
+- name: Install required packages
+  pkgng: name={{ item }} state=present
+  with_items:
+  - poudriere-devel
+  - nginx-devel
+  - git
+  - figlet
+  - vim
+  - go119
+  - modules2tuple
+  - portlint
